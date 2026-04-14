@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Woody's Hardwood Floors — Sarasota's Premier Flooring Contractor</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --walnut: #3B2314;
+    --oak: #7C4A2A;
+    --honey: #C68642;
+    --cream: #F5EFE6;
+    --warm-white: #FDFAF6;
+    --charcoal: #1C1C1C;
+    --text: #2C2012;
+    --light-text: #7A6652;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 20px 60px; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(253,250,246,0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(59,35,20,0.08);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--walnut); }
+  .nav-logo span { color: var(--honey); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--light-text); font-size: 14px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--walnut); }
+  .nav-cta { background: var(--walnut) !important; color: var(--cream) !important; padding: 12px 24px; border-radius: 4px; }
+
+  /* HERO — rich wood background using CSS gradient pattern */
+  .hero {
+    min-height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden;
+    background: var(--walnut);
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(105deg, rgba(28,14,6,0.92) 0%, rgba(59,35,20,0.78) 45%, rgba(59,35,20,0.45) 100%);
+  }
+  .hero-video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 2; padding: 120px 60px 80px; max-width: 720px; }  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(198,134,66,0.2); border: 1px solid rgba(198,134,66,0.4);
+    color: var(--honey); padding: 8px 16px; border-radius: 100px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.5px; margin-bottom: 32px;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--honey); border-radius: 50%; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px,6vw,72px); font-weight: 900; color: var(--cream); line-height: 1.1; margin-bottom: 24px; animation: fadeUp 0.6s 0.1s ease both; }
+  .hero h1 em { font-style: italic; color: var(--honey); }
+  .hero p { font-size: 18px; color: rgba(245,239,230,0.8); line-height: 1.7; margin-bottom: 48px; max-width: 520px; font-weight: 300; animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+  .btn-primary { background: var(--honey); color: var(--walnut); padding: 18px 36px; border-radius: 4px; font-size: 16px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-primary:hover { background: #D4944D; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(198,134,66,0.4); }
+  .btn-secondary { color: var(--cream); font-size: 16px; font-weight: 500; text-decoration: none; opacity: 0.9; transition: opacity 0.2s; }
+  .hero-phone {
+    position: absolute; bottom: 60px; right: 60px; z-index: 3;
+    background: rgba(245,239,230,0.1); backdrop-filter: blur(10px);
+    border: 1px solid rgba(245,239,230,0.2); border-radius: 12px; padding: 20px 28px; text-align: center;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .hero-phone p { font-size: 12px; color: rgba(245,239,230,0.6); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; font-weight: 500; }
+  .hero-phone a { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--honey); text-decoration: none; }
+
+  /* TRUST BAR */
+  .trust-bar { background: var(--cream); padding: 24px 60px; display: flex; justify-content: center; gap: 60px; border-bottom: 1px solid rgba(59,35,20,0.1); }
+  .trust-item { display: flex; align-items: center; gap: 12px; color: var(--light-text); font-size: 14px; font-weight: 500; }
+  .trust-icon { width: 36px; height: 36px; background: var(--walnut); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--honey); font-size: 16px; flex-shrink: 0; }
+
+  /* SERVICES */
+  .services { padding: 100px 60px; background: var(--warm-white); }
+  .section-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--honey); margin-bottom: 16px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px,4vw,48px); font-weight: 700; color: var(--walnut); line-height: 1.2; margin-bottom: 16px; }
+  .section-subtitle { font-size: 17px; color: var(--light-text); font-weight: 300; max-width: 500px; line-height: 1.7; margin-bottom: 60px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: rgba(59,35,20,0.08); }
+  .service-card { background: var(--warm-white); padding: 48px 40px; transition: background 0.3s; position: relative; overflow: hidden; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--honey); transform: scaleX(0); transition: transform 0.3s; }
+  .service-card:hover { background: var(--cream); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon { font-size: 36px; margin-bottom: 20px; }
+  .service-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--walnut); margin-bottom: 12px; }
+  .service-card p { font-size: 15px; color: var(--light-text); line-height: 1.7; font-weight: 300; }
+
+  /* PORTFOLIO — image tiles with CSS floor textures as fallback */
+  .portfolio { padding: 100px 60px; background: var(--cream); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(12,1fr); gap: 12px; margin-top: 60px; }
+  .portfolio-item { overflow: hidden; border-radius: 4px; position: relative; }
+  .portfolio-item:nth-child(1) { grid-column: span 7; grid-row: span 2; height: 480px; }
+  .portfolio-item:nth-child(2) { grid-column: span 5; height: 234px; }
+  .portfolio-item:nth-child(3) { grid-column: span 5; height: 234px; }
+  .portfolio-item:nth-child(4) { grid-column: span 4; height: 280px; }
+  .portfolio-item:nth-child(5) { grid-column: span 4; height: 280px; }
+  .portfolio-item:nth-child(6) { grid-column: span 4; height: 280px; }
+
+  /* Floor texture backgrounds as fallbacks */
+  .floor-hardwood {
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(0,0,0,0.03) 80px, rgba(0,0,0,0.03) 82px),
+      repeating-linear-gradient(180deg, transparent, transparent 8px, rgba(0,0,0,0.02) 8px, rgba(0,0,0,0.02) 10px),
+      linear-gradient(160deg, #8B5E3C 0%, #6B4226 30%, #9C6B44 60%, #7A4F2E 100%);
+  }
+  .floor-vinyl {
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(0,0,0,0.04) 60px, rgba(0,0,0,0.04) 62px),
+      linear-gradient(170deg, #B8956A 0%, #9E7A52 40%, #C4A07A 70%, #A8885E 100%);
+  }
+  .floor-laminate {
+    background:
+      repeating-linear-gradient(88deg, transparent, transparent 100px, rgba(255,255,255,0.05) 100px, rgba(255,255,255,0.05) 102px),
+      linear-gradient(165deg, #6B4C2A 0%, #8B6340 30%, #7A5535 60%, #9B7248 100%);
+  }
+  .floor-stairs {
+    background: linear-gradient(135deg,
+      #3B2314 0%, #5C3A1E 20%, #3B2314 20%, #3B2314 22%,
+      #5C3A1E 22%, #7C4A2A 42%, #5C3A1E 42%, #5C3A1E 44%,
+      #7C4A2A 44%, #9C6242 64%, #7C4A2A 64%, #7C4A2A 66%,
+      #9C6242 66%, #BC7A5A 86%, #9C6242 86%, #9C6242 88%,
+      #BC7A5A 88%, #C68642 100%
+    );
+  }
+  .floor-carpet {
+    background:
+      repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 2px, transparent 2px, transparent 8px),
+      repeating-linear-gradient(-45deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 2px, transparent 2px, transparent 8px),
+      linear-gradient(160deg, #8B7355 0%, #6B5535 40%, #9B836A 70%, #7B6348 100%);
+  }
+  .floor-lvp {
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 70px, rgba(255,255,255,0.04) 70px, rgba(255,255,255,0.04) 72px),
+      repeating-linear-gradient(180deg, transparent, transparent 6px, rgba(0,0,0,0.02) 6px, rgba(0,0,0,0.02) 8px),
+      linear-gradient(155deg, #C4A882 0%, #A88B62 35%, #D4B892 65%, #B89872 100%);
+  }
+
+  .portfolio-tile {
+    width: 100%; height: 100%;
+    display: flex; align-items: flex-end; padding: 20px;
+    transition: filter 0.3s;
+  }
+  .portfolio-item:hover .portfolio-tile { filter: brightness(1.1); }
+  .portfolio-label {
+    background: rgba(28,14,6,0.75); backdrop-filter: blur(4px);
+    color: var(--cream); padding: 8px 14px; border-radius: 4px;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.3px;
+    opacity: 0; transition: opacity 0.3s; transform: translateY(8px); transition: all 0.3s;
+  }
+  .portfolio-item:hover .portfolio-label { opacity: 1; transform: translateY(0); }
+
+  /* WHY US */
+  .why-us { padding: 100px 60px; background: var(--walnut); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .why-us-content .section-label { color: var(--honey); }
+  .why-us-content .section-title { color: var(--cream); }
+  .why-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+  .why-item { display: flex; gap: 16px; align-items: flex-start; }
+  .why-check { width: 28px; height: 28px; background: var(--honey); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--walnut); font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+  .why-item-text h4 { font-size: 16px; font-weight: 600; color: var(--cream); margin-bottom: 4px; }
+  .why-item-text p { font-size: 14px; color: rgba(245,239,230,0.6); line-height: 1.6; font-weight: 300; }
+  .why-us-visual {
+    border-radius: 8px; overflow: hidden; height: 500px;
+    background:
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.03) 60px, rgba(255,255,255,0.03) 62px),
+      repeating-linear-gradient(180deg, transparent, transparent 8px, rgba(0,0,0,0.04) 8px, rgba(0,0,0,0.04) 10px),
+      linear-gradient(160deg, #6B4226 0%, #8B5E3C 30%, #5C3318 60%, #9C6B44 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .why-us-visual-inner { text-align: center; }
+  .why-us-visual-inner p { font-family: 'Playfair Display', serif; font-size: 28px; color: rgba(245,239,230,0.4); font-style: italic; }
+  .why-us-visual-inner span { font-size: 80px; display: block; margin-bottom: 16px; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 100px 60px; background: var(--warm-white); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px; }
+  .testimonial-card { background: var(--cream); padding: 36px; border-radius: 8px; border: 1px solid rgba(59,35,20,0.08); }
+  .stars { color: var(--honey); font-size: 18px; margin-bottom: 16px; letter-spacing: 2px; }
+  .testimonial-card p { font-size: 15px; color: var(--text); line-height: 1.8; font-weight: 300; margin-bottom: 24px; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar { width: 44px; height: 44px; background: var(--walnut); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--honey); font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; }
+  .author-info h4 { font-size: 15px; font-weight: 600; color: var(--walnut); }
+  .author-info p { font-size: 13px; color: var(--light-text); margin: 0; font-style: normal; }
+
+  /* CTA */
+  .cta-section { padding: 100px 60px; background: var(--honey); text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(59,35,20,0.04) 80px, rgba(59,35,20,0.04) 82px); }
+  .cta-section > * { position: relative; z-index: 1; }
+  .cta-section .section-label { color: rgba(59,35,20,0.7); }
+  .cta-section .section-title { color: var(--walnut); margin-bottom: 16px; }
+  .cta-section > p { font-size: 18px; color: rgba(59,35,20,0.8); margin-bottom: 48px; font-weight: 300; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+  .btn-dark { background: var(--walnut); color: var(--cream); padding: 18px 36px; border-radius: 4px; font-size: 16px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-dark:hover { background: var(--charcoal); transform: translateY(-2px); }
+  .cta-phone { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--walnut); text-decoration: none; display: block; letter-spacing: -1px; }
+  .cta-phone-label { font-size: 13px; color: rgba(59,35,20,0.6); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 8px; }
+
+  .service-area { padding: 60px; background: var(--cream); text-align: center; border-top: 1px solid rgba(59,35,20,0.1); }
+  .service-area p { font-size: 15px; color: var(--light-text); }
+  .service-area strong { color: var(--walnut); }
+
+  footer { background: var(--charcoal); padding: 48px 60px; display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.4); }
+  footer a { color: var(--honey); text-decoration: none; font-size: 13px; }
+
+  /* ELLIE WIDGET */
+  .ellie-widget { position: fixed; bottom: 28px; right: 28px; z-index: 999; }
+  .ellie-bubble { width: 60px; height: 60px; background: linear-gradient(135deg, #4F46E5, #3730A3); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 8px 24px rgba(79,70,229,0.4); transition: transform 0.2s; font-size: 26px; }
+  .ellie-bubble:hover { transform: scale(1.1); }
+  .ellie-tooltip { position: absolute; bottom: 70px; right: 0; background: var(--walnut); color: var(--cream); padding: 10px 16px; border-radius: 8px; font-size: 13px; white-space: nowrap; font-weight: 500; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+  .ellie-tooltip::after { content: ''; position: absolute; top: 100%; right: 20px; border: 6px solid transparent; border-top-color: var(--walnut); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 100px 24px 80px; }
+    .hero-phone { right: 24px; bottom: 24px; }
+    .trust-bar { padding: 20px 24px; gap: 24px; flex-wrap: wrap; }
+    .services, .portfolio, .testimonials, .cta-section { padding: 60px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .portfolio-item { grid-column: span 1 !important; grid-row: span 1 !important; height: 180px !important; }
+    .why-us { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .why-us-visual { height: 260px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+    .service-area { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Woody's<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#why-us">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Free Quote</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="https://raw.githubusercontent.com/meetellieai/Chris-Website/refs/heads/main/Woodys-website.mp4" type="video/mp4">
+  </video>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Serving Tampa to Sarasota</div>
+    <h1>Floors That<br><em>Last a Lifetime.</em></h1>
+    <p>Hardwood, vinyl, laminate, carpet, and stairway installation by Sarasota's most trusted flooring contractor. Every job finished to perfection.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Free Quote →</a>
+      <a href="#portfolio" class="btn-secondary">View Our Work ↓</a>
+    </div>
+  </div>
+  <div class="hero-phone">
+    <p>Call Us Anytime</p>
+    <a href="tel:+19418774291">941-877-4291</a>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-icon">✓</div>Licensed & Insured</div>
+  <div class="trust-item"><div class="trust-icon">★</div>5-Star Rated</div>
+  <div class="trust-item"><div class="trust-icon">🏠</div>Residential & Commercial</div>
+  <div class="trust-item"><div class="trust-icon">📍</div>Tampa to Sarasota</div>
+</div>
+
+<section class="services" id="services">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title">Every Floor, Every Room.</h2>
+  <p class="section-subtitle">From hardwood to vinyl plank, we install it all — including stairs. One contractor, complete coverage.</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">🪵</div><h3>Hardwood</h3><p>Classic solid and engineered hardwood installation. We help you pick the right species, stain, and finish for your home.</p></div>
+    <div class="service-card"><div class="service-icon">🏗️</div><h3>Vinyl Plank</h3><p>Waterproof, durable, and beautiful. LVP is perfect for kitchens, bathrooms, and high-traffic areas.</p></div>
+    <div class="service-card"><div class="service-icon">✨</div><h3>Laminate</h3><p>The look of hardwood at a fraction of the cost. We install premium laminate that stands up to real life.</p></div>
+    <div class="service-card"><div class="service-icon">🏡</div><h3>Carpet</h3><p>Soft, warm, and cozy. We install carpet in bedrooms, living rooms, and anywhere comfort matters most.</p></div>
+    <div class="service-card"><div class="service-icon">🪜</div><h3>Stairs</h3><p>Stairs are not a problem — they're our specialty. We refinish and install stair treads, risers, and railings.</p></div>
+    <div class="service-card"><div class="service-icon">🔧</div><h3>Repairs & Refinishing</h3><p>Scratched, worn, or damaged floors? We restore existing floors to their original beauty without full replacement.</p></div>
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <div class="section-label">Our Work</div>
+  <h2 class="section-title">Built With Pride.</h2>
+  <p class="section-subtitle">Every floor we install is a floor we stand behind. Here's a look at recent projects across the Sarasota area.</p>
+  <div class="portfolio-grid">
+    <div class="portfolio-item">
+      <div class="portfolio-tile floor-hardwood">
+        <div class="portfolio-label">🪵 Hardwood Oak — Sarasota</div>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-tile floor-vinyl">
+        <div class="portfolio-label">🏗️ Vinyl Plank — Tampa</div>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-tile floor-laminate">
+        <div class="portfolio-label">✨ Laminate — Bradenton</div>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-tile floor-stairs">
+        <div class="portfolio-label">🪜 Stairway — Sarasota</div>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-tile floor-carpet">
+        <div class="portfolio-label">🏡 Carpet — Venice</div>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-tile floor-lvp">
+        <div class="portfolio-label">💧 LVP Waterproof — North Port</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-us" id="why-us">
+  <div class="why-us-content">
+    <div class="section-label">Why Choose Us</div>
+    <h2 class="section-title" style="color:var(--cream)">We Show Up.<br>We Do It Right.</h2>
+    <p class="section-subtitle" style="color:rgba(245,239,230,0.7);margin-bottom:40px;">No subcontractors. No surprises. Just quality work delivered on time, every time.</p>
+    <ul class="why-list">
+      <li class="why-item"><div class="why-check">✓</div><div class="why-item-text"><h4>We Handle Everything</h4><p>From material selection to final installation — we manage every detail so you don't have to.</p></div></li>
+      <li class="why-item"><div class="why-check">✓</div><div class="why-item-text"><h4>On Time, Every Time</h4><p>We show up when we say we will. Your schedule matters and we respect it.</p></div></li>
+      <li class="why-item"><div class="why-check">✓</div><div class="why-item-text"><h4>Work Guaranteed</h4><p>We stand behind every floor we install. If something isn't right, we make it right.</p></div></li>
+      <li class="why-item"><div class="why-check">✓</div><div class="why-item-text"><h4>Stairs Are No Problem</h4><p>Most contractors avoid stairs. We specialize in them. Full stairway transformations done beautifully.</p></div></li>
+    </ul>
+  </div>
+  <div class="why-us-visual">
+    <div class="why-us-visual-inner">
+      <span>🪵</span>
+      <p>"Every floor tells a story."</p>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-label">What Clients Say</div>
+  <h2 class="section-title">Trusted by Homeowners<br>Across Sarasota.</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Woody's transformed our entire first floor. The hardwood looks absolutely stunning and they finished ahead of schedule. Highly recommend to anyone in Sarasota."</p>
+      <div class="testimonial-author"><div class="author-avatar">M</div><div class="author-info"><h4>Michelle T.</h4><p>Sarasota, FL</p></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Finally found a contractor who actually does stairs well. The whole staircase looks brand new. Clean work, fair price, and they left the house spotless."</p>
+      <div class="testimonial-author"><div class="author-avatar">R</div><div class="author-info"><h4>Robert K.</h4><p>Bradenton, FL</p></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"We had LVP installed throughout the whole house. The team was professional, fast, and the floors look amazing. Will definitely use them again for our rental property."</p>
+      <div class="testimonial-author"><div class="author-avatar">D</div><div class="author-info"><h4>Diana L.</h4><p>Venice, FL</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="section-label">Get Started Today</div>
+  <h2 class="section-title">Ready for Beautiful Floors?</h2>
+  <p>Call us or send a message and we'll get back to you fast. Free estimates on all projects.</p>
+  <div class="cta-buttons">
+    <a href="tel:+19418774291" class="btn-dark">📞 Call Now</a>
+    <a href="mailto:info@woodyshardwoodfloors.us" class="btn-dark">✉️ Send a Message</a>
+  </div>
+  <a href="tel:+19418774291" class="cta-phone">941-877-4291</a>
+  <p class="cta-phone-label">Available Monday – Saturday</p>
+</section>
+
+<div class="service-area">
+  <p>Proudly serving <strong>Sarasota · Tampa · Bradenton · Venice · North Port · Osprey · Nokomis</strong> and surrounding areas.</p>
+</div>
+
+<footer>
+  <div class="nav-logo" style="color:var(--cream)">Woody's<span style="color:var(--honey)">.</span></div>
+  <p>© 2026 Woody's Hardwood Floors. All rights reserved.</p>
+  <a href="tel:+19418774291">941-877-4291</a>
+</footer>
+
+<div class="ellie-widget">
+  <div class="ellie-tooltip">💬 Chat with Ellie — we reply instantly!</div>
+  <div class="ellie-bubble">🤖</div>
+</div>
+
+</body>
+</html>
